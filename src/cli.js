@@ -2,6 +2,8 @@ const program = require("commander");
 
 const { version } = require("../package");
 
+program.name("cli")
+
 // register version flag
 program.version(version);
 
