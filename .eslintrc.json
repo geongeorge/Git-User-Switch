@@ -1,9 +1,14 @@
 {
-  "parserOptions": {
-    "ecmaVersion": 2017
-  },
-  "extends": ["plugin:prettier/recommended"],
+  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
   "plugins": ["prettier"],
+  "parserOptions": {
+    "ecmaVersion": 2019
+  },
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
   "rules": {
     "prettier/prettier": "error"
   }
