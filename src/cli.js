@@ -1,6 +1,6 @@
-const program = require('commander');
+const program = require("commander");
 
-const { version } = require('../package');
+const { version } = require("../package");
 
 // register version flag
 program.version(version);
