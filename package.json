@@ -1,0 +1,22 @@
+{
+  "name": "cli-starter",
+  "version": "1.0.0",
+  "description": "CLI starter template",
+  "main": "./bin/index.js",
+  "files": [
+    "bin",
+    "src"
+  ],
+  "bin": {
+    "cli": "./src/cli.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^5.0.0"
+  }
+}
