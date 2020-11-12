@@ -1,13 +1,15 @@
 /** @format */
 
 const program = require("commander");
-const store = require("data-store")({ path: process.cwd() + "/data.json" });
+const Conf = require("conf");
 
 const { version } = require("../package");
 
 const selectUser = require("./lib/selectUser");
 const createUser = require("./lib/createUser");
 const deleteUser = require("./lib/deleteUser");
+
+const store = new Conf();
 
 // Initialize cli
 program
@@ -34,7 +36,7 @@ if (program.reset) {
 }
 
 if (program.delete) {
-  // delete all data and return
+  // delete user
   deleteUser(store);
   return;
 }
