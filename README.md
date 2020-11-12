@@ -1,6 +1,18 @@
 # Git User Switch
 
-Switch git user and email at ease
+Switch git user and email at ease.
+
+<img src="https://gfycat.com/officialliveimago.gif">
+
+
+
+### Install
+
+```
+npm i -g git-user-switch
+```
+
+### Usage
 
 ```sh
 Usage: git-user [options]
