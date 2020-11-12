@@ -49,6 +49,24 @@ async function selectUser(users, isGlobal = false) {
   await execa
     .command(`git config ${globalFlag} user.email ${userEmail}`)
     .stdout.pipe(process.stdout);
+
+  if(user.signingKey) {
+    console.log(`Setting ${user.signingKey} as user.signingKey`);
+    await execa
+      .command(`git config ${globalFlag} user.signingKey ${user.signingKey}`)
+      .stdout.pipe(process.stdout);
+  } else if (
+    (await execa.command(`git config ${globalFlag} user.signingKey`)).stdout
+  ) {
+    console.log('Clearing user.signingKey');
+    const clearSigningKeyCommands = ['config', 'user.signingKey', ''];
+    if (globalFlag) {
+      clearSigningKeyCommands.splice(1, 0, globalFlag);
+    }
+    await execa('git', clearSigningKeyCommands)
+      .stdout.pipe(process.stdout);
+  }
+
   console.log("Done!");
 }
 function escapeString(str) {
