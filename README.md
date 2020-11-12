@@ -2,7 +2,7 @@
 
 Switch git user and email at ease.
 
-<img src="https://gfycat.com/officialliveimago.gif">
+<img src="https://thumbs.gfycat.com/OfficialLiveImago-size_restricted.gif">
 
 
 
