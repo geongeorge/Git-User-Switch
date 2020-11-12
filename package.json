@@ -8,7 +8,7 @@
     "src"
   ],
   "bin": {
-    "cli": "bin/index.js"
+    "git-user": "bin/index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
