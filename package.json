@@ -1,6 +1,6 @@
 {
   "name": "git-user-switch",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Switch git user quickly",
   "main": "./bin/index.js",
   "files": [
@@ -8,7 +8,7 @@
     "src"
   ],
   "bin": {
-    "cli": "./bin/index.js"
+    "cli": "bin/index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
