@@ -12,7 +12,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint --fix ./src"
+    "lint": "eslint --fix ./src",
+    "postversion": "git push && git push --tags"
   },
   "keywords": [],
   "author": "",
