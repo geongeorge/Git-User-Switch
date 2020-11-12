@@ -1,14 +1,16 @@
-# cli-starter
+# Git User Switch
 
-CLI starter kit on top of Node.js
-
-- Makes use of [commander.js](https://github.com/tj/commander.js) for the purpose of argument parsing.
-- `Eslint` configured to be used alongwith `prettier`.
+Switch git user and email at ease
 
 ```sh
-Usage: cli [options]
+Usage: git-user [options]
+
+Switch git users quickly. Switches locally by default
 
 Options:
   -V, --version  output the version number
+  -g, --global   Switch global git user
+  -d, --delete   Delete a git user from the listing
+  -r, --reset    Deletes all data and resets
   -h, --help     display help for command
 ```
