@@ -1,6 +1,6 @@
 {
   "name": "git-user-switch",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Switch git user quickly",
   "main": "./bin/index.js",
   "files": [
