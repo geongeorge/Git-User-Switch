@@ -12,7 +12,7 @@ async function selectUser(users, isGlobal = false) {
       choices: [
         ...users.map((el, index) => ({
           value: index,
-          name: `${el.name} : ${el.email}`,
+          name: `${el.name} : ${el.email}${el.signingKey ? ` (${el.signingKey})` : ''}`,
         })),
         {
           value: -1,
