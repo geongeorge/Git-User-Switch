@@ -15,9 +15,17 @@
     "lint": "eslint --fix ./src",
     "postversion": "git push && git push --tags"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/geongeorge/Git-User-Switch"
+  },
+  "keywords": [
+    "git",
+    "git-user",
+    "user"
+  ],
+  "author": "Geon George <me@geongeorge.com> (https://geongeorge.com)",
+  "license": "MIT",
   "dependencies": {
     "commander": "^5.0.0",
     "data-store": "^4.0.3",
