@@ -14,6 +14,11 @@ async function createUser(store) {
       name: "email",
       message: "Enter your git user email",
     },
+    {
+      type: "input",
+      name: "signingKey",
+      message: "(Optional) Enter your GPG signing key",
+    },
   ];
 
   const res = await prompt(questions);
@@ -23,6 +28,7 @@ async function createUser(store) {
   const newUser = {
     name: res.name,
     email: res.email,
+    signingKey: res.signingKey || null,
   };
 
   if (users.includes(newUser)) {
