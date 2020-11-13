@@ -1,9 +1,8 @@
 # Git User Switch
 
-Switch git user and email at ease.
+Switch git user, email and signingKey at ease.
 
 <img src="https://thumbs.gfycat.com/OfficialLiveImago-size_restricted.gif">
-
 
 
 ### Install
