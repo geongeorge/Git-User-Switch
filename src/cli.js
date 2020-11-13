@@ -8,6 +8,8 @@ const { version } = require("../package");
 const selectUser = require("./lib/selectUser");
 const createUser = require("./lib/createUser");
 const deleteUser = require("./lib/deleteUser");
+const chalk = require("chalk");
+const log = console.log;
 
 const store = new Conf();
 
@@ -31,7 +33,7 @@ program.parse(process.argv);
 if (program.reset) {
   // delete all data and return
   resetStore();
-  console.log("Data reset successfully!");
+  log(chalk.bold("Data reset successfully!"));
   return;
 }
 
@@ -59,5 +61,5 @@ async function main() {
 
 // Deletes the store file
 function resetStore() {
-  store.unlink();
+  store.set("users", []);
 }

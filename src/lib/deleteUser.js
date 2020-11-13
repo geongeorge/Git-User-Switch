@@ -2,11 +2,14 @@
 
 const { prompt } = require("inquirer");
 
+const chalk = require("chalk");
+const log = console.log;
+
 async function deleteUser(store) {
   const users = store.get("users");
 
   if (!users || users.length === 0) {
-    console.log("Users already empty!");
+    log("Users already empty!");
     return;
   }
 
@@ -18,7 +21,9 @@ async function deleteUser(store) {
       choices: [
         ...users.map((el, index) => ({
           value: index,
-          name: `${el.name} : ${el.email}`,
+          name: `${el.name} : ${el.email} ${
+            el.signingKey ? ` ${chalk.yellow("[" + el.signingKey + "]")}` : ""
+          }`,
         })),
         {
           value: -1,
@@ -36,7 +41,7 @@ async function deleteUser(store) {
 
   if (response.selection === -1) {
     // Cancel
-    console.log("Operation Cancelled!");
+    log("Operation Cancelled!");
     return;
   }
 
@@ -45,7 +50,15 @@ async function deleteUser(store) {
 
   store.set("users", newUsers);
 
-  console.log(`Deleted ${users[deleteIndex].name}:${users[deleteIndex].email}`);
+  const signingKey = users[deleteIndex].signingKey
+    ? "[" + users[deleteIndex].signingKey + "]"
+    : "";
+
+  log(
+    `Deleted ${users[deleteIndex].name}:${
+      users[deleteIndex].email
+    } ${chalk.yellow(signingKey)}`
+  );
 
   // Set user here
   // use isGlobal

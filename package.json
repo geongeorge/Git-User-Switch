@@ -27,6 +27,7 @@
   "author": "Geon George <me@geongeorge.com> (https://geongeorge.com)",
   "license": "MIT",
   "dependencies": {
+    "chalk": "^4.1.0",
     "commander": "^5.0.0",
     "conf": "^7.1.2",
     "execa": "^4.1.0",
