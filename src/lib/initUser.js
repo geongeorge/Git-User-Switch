@@ -4,7 +4,7 @@ const execa = require("execa");
 
 async function initUser(store) {
   const confList = (await execa.command("git config --list")).stdout.match(
-    /(?:(user.(name|email)))(.+)/g
+    /user\.(name|email|signingKey).+/g
   );
   const users = [];
 

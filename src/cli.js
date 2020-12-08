@@ -5,6 +5,7 @@ const Conf = require("conf");
 
 const { version } = require("../package");
 
+const initUser = require("./lib/initUser");
 const selectUser = require("./lib/selectUser");
 const createUser = require("./lib/createUser");
 const deleteUser = require("./lib/deleteUser");
