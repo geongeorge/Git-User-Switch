@@ -25,7 +25,6 @@ program
 if (store.get("users") === undefined) {
   store.set("users", []);
 }
-const users = store.get("users");
 
 // parse cli args
 program.parse(process.argv);
@@ -52,6 +51,12 @@ if (program.global) {
 main();
 
 async function main() {
+  let users = store.get("users");
+  // Init users
+  if (!users.length) {
+    await initUser(store);
+    users = store.get("users");
+  }
   const res = await selectUser(users, isGlobal);
   if (res === -1) {
     await createUser(store);
