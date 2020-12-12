@@ -12,15 +12,16 @@ async function initUser(store) {
   let [nameC, emailC, signKeyC] = [0, 0, 0];
   confList.forEach((e) => {
     users[Math.max(nameC, emailC, signKeyC)] = {};
+    const sliceIdx = e.indexOf("=") + 1;
     switch (e) {
       case e.includes("name") ? e : null:
-        users[nameC++].name = e.slice(e.indexOf("=") + 1);
+        users[nameC++].name = e.slice(sliceIdx);
         break;
       case e.includes("email") ? e : null:
-        users[emailC++].email = e.slice(e.indexOf("=") + 1);
+        users[emailC++].email = e.slice(sliceIdx);
         break;
       case e.includes("signingKey") ? e : null:
-        users[signKeyC++].signingKey = e.slice(e.indexOf("=") + 1);
+        users[signKeyC++].signingKey = e.slice(sliceIdx);
         break;
     }
   });
