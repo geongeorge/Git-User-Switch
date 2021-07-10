@@ -2,6 +2,22 @@
 
 const { prompt } = require("inquirer");
 
+const checkIsUserExist = (users, newUser) => {
+  let isExist = false;
+  if (users && Array.isArray(users) && newUser) {
+    users.forEach(({ name, email, signingKey }) => {
+      if (
+        name === newUser.name &&
+        email === newUser.email &&
+        signingKey === newUser.signingKey
+      ) {
+        isExist = true;
+      }
+    });
+  }
+  return isExist;
+};
+
 async function createUser(store) {
   const questions = [
     {
@@ -31,7 +47,7 @@ async function createUser(store) {
     signingKey: res.signingKey || null,
   };
 
-  if (users.includes(newUser)) {
+  if (checkIsUserExist(users, newUser)) {
     console.log(`${res.name}:${res.email} already exists!`);
     return;
   }
