@@ -24,18 +24,21 @@ async function createUser(store) {
       type: "input",
       name: "name",
       message: "Enter your git user name",
+      transformer: trimAnswer,
       validate: validateAnswer("Please specify the name of git"),
     },
     {
       type: "input",
       name: "email",
       message: "Enter your git user email",
+      transformer: trimAnswer,
       validate: validateAnswer("Please specify the email ofgGit"),
     },
     {
       type: "input",
       name: "signingKey",
       message: "(Optional) Enter your GPG signing key",
+      transformer: trimAnswer,
     },
   ];
 
