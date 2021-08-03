@@ -10,17 +10,27 @@ const trimAnswer = (answer) => {
   return answer.trim()
 }
 
+const validateAnswer = (errorMessage) => (answer) => {
+  if(!trimAnswer(answer)) {
+    return errorMessage
+  }
+
+  return !!answer
+}
+
 async function createUser(store) {
   const questions = [
     {
       type: "input",
       name: "name",
       message: "Enter your git user name",
+      validate: validateAnswer("Please specify the name of git"),
     },
     {
       type: "input",
       name: "email",
       message: "Enter your git user email",
+      validate: validateAnswer("Please specify the email ofgGit"),
     },
     {
       type: "input",
