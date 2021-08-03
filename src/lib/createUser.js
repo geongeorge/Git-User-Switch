@@ -2,6 +2,14 @@
 
 const { prompt } = require("inquirer");
 
+const trimAnswer = (answer) => {
+  if(typeof answer !== 'string') {
+    throw new Error('Answer must be a string')
+  }
+
+  return answer.trim()
+}
+
 async function createUser(store) {
   const questions = [
     {
@@ -26,9 +34,9 @@ async function createUser(store) {
   const users = store.get("users");
 
   const newUser = {
-    name: res.name,
-    email: res.email,
-    signingKey: res.signingKey || null,
+    name: trimAnswer(res.name),
+    email: trimAnswer(res.email),
+    signingKey: trimAnswer(res.signingKey) || null,
   };
 
   if (users.includes(newUser)) {
