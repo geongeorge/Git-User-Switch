@@ -2,6 +2,17 @@
 
 const { prompt } = require("inquirer");
 
+const checkIsUserExist = (users, newUser) =>
+  users &&
+  Array.isArray(users) &&
+  newUser &&
+  users.some(
+    ({ name, email, signingKey }) =>
+      name === newUser.name &&
+      email === newUser.email &&
+      signingKey === newUser.signingKey
+  );
+
 const trimAnswer = (answer) => {
   if(typeof answer !== 'string') {
     throw new Error('Answer must be a string')
@@ -52,7 +63,7 @@ async function createUser(store) {
     signingKey: trimAnswer(res.signingKey) || null,
   };
 
-  if (users.includes(newUser)) {
+  if (checkIsUserExist(users, newUser)) {
     console.log(`${res.name}:${res.email} already exists!`);
     return;
   }
