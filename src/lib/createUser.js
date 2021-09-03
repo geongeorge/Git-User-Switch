@@ -13,22 +13,43 @@ const checkIsUserExist = (users, newUser) =>
       signingKey === newUser.signingKey
   );
 
+const trimAnswer = (answer) => {
+  if(typeof answer !== 'string') {
+    throw new Error('Answer must be a string')
+  }
+
+  return answer.trim()
+}
+
+const validateAnswer = (errorMessage) => (answer) => {
+  if(!trimAnswer(answer)) {
+    return errorMessage
+  }
+
+  return !!answer
+}
+
 async function createUser(store) {
   const questions = [
     {
       type: "input",
       name: "name",
       message: "Enter your git user name",
+      transformer: trimAnswer,
+      validate: validateAnswer("Please specify the name of git"),
     },
     {
       type: "input",
       name: "email",
       message: "Enter your git user email",
+      transformer: trimAnswer,
+      validate: validateAnswer("Please specify the email ofgGit"),
     },
     {
       type: "input",
       name: "signingKey",
       message: "(Optional) Enter your GPG signing key",
+      transformer: trimAnswer,
     },
   ];
 
@@ -37,9 +58,9 @@ async function createUser(store) {
   const users = store.get("users");
 
   const newUser = {
-    name: res.name,
-    email: res.email,
-    signingKey: res.signingKey || null,
+    name: trimAnswer(res.name),
+    email: trimAnswer(res.email),
+    signingKey: trimAnswer(res.signingKey) || null,
   };
 
   if (checkIsUserExist(users, newUser)) {
