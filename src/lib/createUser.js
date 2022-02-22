@@ -36,14 +36,14 @@ async function createUser(store) {
       name: "name",
       message: "Enter your git user name",
       transformer: trimAnswer,
-      validate: validateAnswer("Please specify the name of git"),
+      validate: validateAnswer("Please specify the name of the git user"),
     },
     {
       type: "input",
       name: "email",
       message: "Enter your git user email",
       transformer: trimAnswer,
-      validate: validateAnswer("Please specify the email ofgGit"),
+      validate: validateAnswer("Please specify the email of the git user"),
     },
     {
       type: "input",
