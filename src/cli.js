@@ -69,7 +69,6 @@ async function main() {
     )
   );
 
-  // eslint-disable-next-line no-unreachable
   let users = store.get("users");
   // Init users
   if (!users.length) {
