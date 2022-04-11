@@ -9,6 +9,8 @@ const initUser = require("./lib/initUser");
 const selectUser = require("./lib/selectUser");
 const createUser = require("./lib/createUser");
 const deleteUser = require("./lib/deleteUser");
+const fetchUser = require("./lib/fetchUser");
+
 const chalk = require("chalk");
 const log = console.log;
 
@@ -52,6 +54,22 @@ if (program.global) {
 main();
 
 async function main() {
+  const currentValues = await fetchUser();
+  let user = currentValues.local;
+
+  if (isGlobal) {
+    user = currentValues.global;
+  }
+
+  log(
+    chalk.green(
+      `Current git user(${isGlobal ? "global" : "local"}) is ${user.name}:${
+        user.email
+      }\n`
+    )
+  );
+
+  // eslint-disable-next-line no-unreachable
   let users = store.get("users");
   // Init users
   if (!users.length) {
