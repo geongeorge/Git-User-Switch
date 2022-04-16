@@ -6,34 +6,30 @@ function getCommand({ global = false, value = "name" }) {
   return `git config ${globalFlag} user.${value}`;
 }
 
-async function fetchUser() {
-  const localValues = { name: "", email: "" };
-  const globalValues = { ...localValues };
+async function fetchUser(isGlobal = false) {
+  const userValues = { name: "", email: "" };
 
-  const { stdout: localName } = await execa.command(
-    getCommand({ global: false, value: "name" })
-  );
-  const { stdout: localEmail } = await execa.command(
-    getCommand({ global: false, value: "email" })
-  );
+  if (isGlobal) {
+    const { stdout: globalName } = await execa.command(
+      getCommand({ global: true, value: "name" })
+    );
+    const { stdout: globalEmail } = await execa.command(
+      getCommand({ global: true, value: "email" })
+    );
+    userValues.name = globalName;
+    userValues.email = globalEmail;
+  } else {
+    const { stdout: localName } = await execa.command(
+      getCommand({ global: false, value: "name" })
+    );
+    const { stdout: localEmail } = await execa.command(
+      getCommand({ global: false, value: "email" })
+    );
+    userValues.name = localName;
+    userValues.email = localEmail;
+  }
 
-  localValues.name = localName;
-  localValues.email = localEmail;
-
-  const { stdout: globalName } = await execa.command(
-    getCommand({ global: true, value: "name" })
-  );
-  const { stdout: globalEmail } = await execa.command(
-    getCommand({ global: true, value: "email" })
-  );
-
-  globalValues.name = globalName;
-  globalValues.email = globalEmail;
-
-  return {
-    local: localValues,
-    global: globalValues,
-  };
+  return userValues;
 }
 
 module.exports = fetchUser;

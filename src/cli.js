@@ -54,20 +54,26 @@ if (program.global) {
 main();
 
 async function main() {
-  const currentValues = await fetchUser();
-  let user = currentValues.local;
+  try {
+    const currentUserValues = await fetchUser(isGlobal);
 
-  if (isGlobal) {
-    user = currentValues.global;
+    log(
+      chalk.green(
+        `Current git user(${isGlobal ? "global" : "local"}) is ${
+          currentUserValues.name
+        }:${currentUserValues.email}\n`
+      )
+    );
+  } catch (error) {
+    log(
+      chalk.red(
+        `You didn't have set git config ${
+          isGlobal ? "--global" : ""
+        }, create git config user as below`
+      )
+    );
+    await createUser(store);
   }
-
-  log(
-    chalk.green(
-      `Current git user(${isGlobal ? "global" : "local"}) is ${user.name}:${
-        user.email
-      }\n`
-    )
-  );
 
   let users = store.get("users");
   // Init users
