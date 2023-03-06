@@ -85,6 +85,10 @@ const programHandler = async () => {
   }
   if (program.scan) {
     const gitRepoList = await scanDir();
+    if (!gitRepoList.length) {
+      log(chalk.red("No git repo found!"));
+      return;
+    }
     for (let i = 0; i < gitRepoList.length; i++) {
       const gitDir = gitRepoList[i];
       // goto dir
