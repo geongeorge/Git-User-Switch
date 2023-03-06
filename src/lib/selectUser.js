@@ -14,9 +14,7 @@ async function selectUser(users, isGlobal = false) {
       choices: [
         ...users.map((el, index) => ({
           value: index,
-          name: `${el.name} : ${el.email} ${
-            el.signingKey ? ` ${chalk.yellow("[" + el.signingKey + "]")}` : ""
-          }`,
+          name: `${el.name} : ${el.email} ${el.signingKey ? ` ${chalk.yellow("[" + el.signingKey + "]")}` : ""}`,
         })),
         {
           value: -1,
@@ -46,29 +44,26 @@ async function selectUser(users, isGlobal = false) {
   const userEmail = escapeString(user.email);
 
   log(`Setting ${chalk.green.bold(user.name)} as user.name`);
-  await execa
-    .command(`git config ${globalFlag} user.name ${userName}`)
-    .stdout.pipe(process.stdout);
+  const { stdout } = await execa.command(`git config ${globalFlag} user.name ${userName}`);
+  console.log(stdout);
   log(`Setting ${chalk.green.bold(user.email)} as user.email`);
-  await execa
-    .command(`git config ${globalFlag} user.email ${userEmail}`)
-    .stdout.pipe(process.stdout);
+  const { stdout: stdoutEmail } = await execa.command(`git config ${globalFlag} user.email ${userEmail}`);
+  console.log(stdoutEmail);
 
   if (user.signingKey) {
     log(`Setting ${chalk.yellow.bold(user.signingKey)} as user.signingKey`);
     const escapedKey = escapeString(user.signingKey);
-    await execa
-      .command(`git config ${globalFlag} user.signingKey ${escapedKey}`)
-      .stdout.pipe(process.stdout);
+    const { stdout: stdoutSigningKey } = await execa.command(`git config ${globalFlag} user.signingKey ${escapedKey}`);
+    console.log(stdoutSigningKey);
   } else {
     log("Clearing user.signingKey");
     const clearSigningKeyCommands = ["config", "user.signingKey", ""];
     if (globalFlag) {
       clearSigningKeyCommands.splice(1, 0, globalFlag);
     }
-    await execa("git", clearSigningKeyCommands).stdout.pipe(process.stdout);
+    const { stdout: stdoutGit } = await execa("git", clearSigningKeyCommands);
+    console.log(stdoutGit);
   }
-
   log(chalk.cyan.bold("Done!"));
 }
 function escapeString(str) {
