@@ -100,6 +100,37 @@ const programHandler = async () => {
 };
 programHandler();
 
+main();
+
+async function main() {
+  try {
+    const currentUserValues = await fetchUser(isGlobal);
+
+    log(
+      chalk.green(
+        `Current git user(${isGlobal ? "global" : "local"}) is ${currentUserValues.name}:${currentUserValues.email}\n`,
+      ),
+    );
+  } catch (error) {
+    log(chalk.red(`You didn't have set git config ${isGlobal ? "--global" : ""}, create git config user as below`));
+    await createUser(store);
+  }
+
+  let users = store.get("users");
+  // Init users
+  if (!users.length) {
+    await initUser(store);
+    users = store.get("users");
+  }
+
+  // why emit select user default?
+  // const res = await selectUser(users, isGlobal);
+  // if (res === -1) {
+  //   await createUser(store);
+  //   return;
+  // }
+}
+
 // Deletes the store file
 function resetStore() {
   store.set("users", []);
