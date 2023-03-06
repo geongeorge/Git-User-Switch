@@ -1,9 +1,8 @@
 # Git User Switch
 
-Switch git user, email and signingKey at ease.
+Manage/Switch/Scan git user, email and signingKey at ease.
 
 <img src="https://thumbs.gfycat.com/OfficialLiveImago-size_restricted.gif">
-
 
 ### Install
 
@@ -23,17 +22,20 @@ Options:
   -g, --global   Switch global git user
   -d, --delete   Delete a git user from the listing
   -r, --reset    Deletes all data and resets
-  -h, --help     display help for command
+  -h, --help     Display help for command
+  -i, --info     Show current git user
+  -s, --switch   Switch git user
+  -c, --create   Create a new git user
+  -S, --scan     Scan all git repo in current directory, and show the git user of each repo
 ```
-
 
 ### Troubleshoot
 
 In case this messes up any of your git configs because of bad input.
 Just edit:
 
-*Global* : `~/.gitconfig`
-*Local Project* : `project/.git/config`
+_Global_ : `~/.gitconfig`
+_Local Project_ : `project/.git/config`
 
 ```
 [user]
