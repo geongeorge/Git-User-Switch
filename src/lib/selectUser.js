@@ -45,16 +45,15 @@ async function selectUser(users, isGlobal = false) {
 
   log(`Setting ${chalk.green.bold(user.name)} as user.name`);
   const { stdout } = await execa.command(`git config ${globalFlag} user.name ${userName}`);
-  console.log(stdout);
+  stdout && log(stdout);
   log(`Setting ${chalk.green.bold(user.email)} as user.email`);
   const { stdout: stdoutEmail } = await execa.command(`git config ${globalFlag} user.email ${userEmail}`);
-  console.log(stdoutEmail);
-
+  stdoutEmail && log(stdoutEmail);
   if (user.signingKey) {
     log(`Setting ${chalk.yellow.bold(user.signingKey)} as user.signingKey`);
     const escapedKey = escapeString(user.signingKey);
     const { stdout: stdoutSigningKey } = await execa.command(`git config ${globalFlag} user.signingKey ${escapedKey}`);
-    console.log(stdoutSigningKey);
+    stdoutSigningKey && log(stdoutSigningKey);
   } else {
     log("Clearing user.signingKey");
     const clearSigningKeyCommands = ["config", "user.signingKey", ""];
@@ -62,7 +61,7 @@ async function selectUser(users, isGlobal = false) {
       clearSigningKeyCommands.splice(1, 0, globalFlag);
     }
     const { stdout: stdoutGit } = await execa("git", clearSigningKeyCommands);
-    console.log(stdoutGit);
+    stdoutGit && log(stdoutGit);
   }
   log(chalk.cyan.bold("Done!"));
 }
