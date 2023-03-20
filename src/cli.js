@@ -126,13 +126,11 @@ async function main() {
     await initUser(store);
     users = store.get("users");
   }
-
-  // why emit select user default?
-  // const res = await selectUser(users, isGlobal);
-  // if (res === -1) {
-  //   await createUser(store);
-  //   return;
-  // }
+  const res = await selectUser(users, isGlobal);
+  if (res === -1) {
+    await createUser(store);
+    return;
+  }
 }
 
 // Deletes the store file
